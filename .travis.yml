@@ -15,7 +15,7 @@ script:
 install:
   - git submodule update --remote
   - yarn
-  - bash .travis/build.sh || true
+  - sudo bash .travis/build.sh || true
   - ls build || true
   - ls build-ropsten || true
 
