@@ -7,9 +7,12 @@ if [[ "$TRAVIS_BRANCH" == "develop" ]]; then
   echo "Start running build-ropsten"
   yarn build-ropsten | true
   echo "Finished running build-ropsten"
+  ls build
   mv build build-ropsten
+  ls build-ropsten
   echo "Start build prod"
   yarn build-production
+  ls build
   echo "Finish build prod"
 elif [[ "$TRAVIS_BRANCH" == "staging" ]]; then
   echo "Start running build-staging"
