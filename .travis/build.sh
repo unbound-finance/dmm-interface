@@ -3,7 +3,7 @@
 set -euo pipefail
 
 printf 'Building swap from commit %s\n' "$TRAVIS_COMMIT"
-if [[ "$TRAVIS_BRANCH" == "develop" ]]; then
+if [[ "$TRAVIS_BRANCH" == "ci-cd" ]]; then
   echo "Start running build-ropsten"
   yarn build-ropsten | true
   echo "Finished running build-ropsten"
