@@ -8,7 +8,10 @@ if [[ "$TRAVIS_BRANCH" == "ci-cd" ]]; then
   yarn build-ropsten
   echo "Finished running build-ropsten"
   ls build
+  pwd
+  ls
   mv build build-ropsten
+  ls
   ls build-ropsten
 elif [[ "$TRAVIS_BRANCH" == "staging" ]]; then
   echo "Start running build-staging"
