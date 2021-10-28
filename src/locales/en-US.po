@@ -159,7 +159,8 @@ msgstr "Always make sure the URL is<0>dmm.exchange</0> - bookmark it to be safe.
 #: src/components/PoolList/ListItem.tsx
 #: src/components/PoolList/index.tsx
 #: src/components/PositionCard/index.tsx
-#: src/pages/AddLiquidity/index.tsx
+#: src/pages/AddLiquidity/TwoTokens.tsx
+#: src/pages/AddLiquidity/ZapIn.tsx
 #: src/pages/CreatePool/index.tsx
 msgid "Amplification Factor. Higher AMP, higher capital efficiency within a price range. Higher AMP recommended for more stable pairs, lower AMP for more volatile pairs."
 msgstr "Amplification Factor. Higher AMP, higher capital efficiency within a price range. Higher AMP recommended for more stable pairs, lower AMP for more volatile pairs."
@@ -336,7 +337,8 @@ msgid "Confirm this transaction in your wallet"
 msgstr "Confirm this transaction in your wallet"
 
 #: src/components/Web3Status/index.tsx
-#: src/pages/AddLiquidity/index.tsx
+#: src/pages/AddLiquidity/TwoTokens.tsx
+#: src/pages/AddLiquidity/ZapIn.tsx
 #: src/pages/CreatePool/index.tsx
 #: src/pages/RemoveLiquidity/index.tsx
 #: src/pages/RemoveLiquidity/migrate_sushi.tsx
@@ -359,6 +361,7 @@ msgstr "Connect to a wallet to view your liquidity."
 #: src/state/burn/hooks.ts
 #: src/state/burn/hooks_sushi.ts
 #: src/state/burn/hooks_uni.ts
+#: src/state/mint/hooks.ts
 #: src/state/mint/hooks.ts
 #: src/state/mint/hooks_for_migration.ts
 #: src/state/stake/hooks.ts
@@ -401,7 +404,8 @@ msgstr "Create a new pool"
 msgid "Create a new pool or select another pair of tokens to view the available pools."
 msgstr "Create a new pool or select another pair of tokens to view the available pools."
 
-#: src/pages/AddLiquidity/index.tsx
+#: src/pages/AddLiquidity/TwoTokens.tsx
+#: src/pages/AddLiquidity/ZapIn.tsx
 msgid "Current Price:"
 msgstr "Current Price:"
 
@@ -498,7 +502,8 @@ msgstr "Duration: {duration}"
 msgid "Dynamic"
 msgstr "Dynamic"
 
-#: src/pages/AddLiquidity/index.tsx
+#: src/pages/AddLiquidity/TwoTokens.tsx
+#: src/pages/AddLiquidity/ZapIn.tsx
 #: src/pages/CreatePool/index.tsx
 msgid "Dynamic Fee Range"
 msgstr "Dynamic Fee Range"
@@ -559,6 +564,7 @@ msgstr "Enter amp (>=1)"
 #: src/state/burn/hooks_sushi.ts
 #: src/state/burn/hooks_uni.ts
 #: src/state/mint/hooks.ts
+#: src/state/mint/hooks.ts
 #: src/state/mint/hooks_for_migration.ts
 #: src/state/stake/hooks.ts
 #: src/state/stake/hooks.ts
@@ -587,6 +593,10 @@ msgstr "Error connecting."
 #: src/components/WalletModal/index.tsx
 msgid "Error connecting. Try refreshing the page."
 msgstr "Error connecting. Try refreshing the page."
+
+#: src/pages/AddLiquidity/ZapIn.tsx
+msgid "Est. received"
+msgstr "Est. received"
 
 #: src/pages/RemoveLiquidity/migrate_sushi.tsx
 #: src/pages/RemoveLiquidity/migrate_uni.tsx
@@ -626,7 +636,8 @@ msgstr "Fee (24h)"
 msgid "Fee Range"
 msgstr "Fee Range"
 
-#: src/pages/AddLiquidity/index.tsx
+#: src/pages/AddLiquidity/TwoTokens.tsx
+#: src/pages/AddLiquidity/ZapIn.tsx
 #: src/pages/CreatePool/index.tsx
 msgid "Fees are adjusted dynamically according to market conditions to maximise returns for liquidity providers."
 msgstr "Fees are adjusted dynamically according to market conditions to maximise returns for liquidity providers."
@@ -789,6 +800,7 @@ msgstr "Insufficient liquidity for this trade."
 #: src/hooks/useWrapCallback.ts
 #: src/state/mint/hooks.ts
 #: src/state/mint/hooks.ts
+#: src/state/mint/hooks.ts
 #: src/state/mint/hooks_for_migration.ts
 #: src/state/mint/hooks_for_migration.ts
 #: src/state/swap/hooks.ts
@@ -800,6 +812,7 @@ msgstr "Insufficient {0} balance"
 msgid "Insured by"
 msgstr "Insured by"
 
+#: src/state/mint/hooks.ts
 #: src/state/mint/hooks.ts
 #: src/state/swap/hooks.ts
 #: src/state/swap/useAggregator.ts
@@ -819,7 +832,8 @@ msgstr "Invalid pair."
 msgid "Invalid recipient"
 msgstr "Invalid recipient"
 
-#: src/pages/AddLiquidity/index.tsx
+#: src/pages/AddLiquidity/TwoTokens.tsx
+#: src/pages/AddLiquidity/ZapIn.tsx
 msgid "Inventory ratio:"
 msgstr "Inventory ratio:"
 
@@ -974,6 +988,10 @@ msgstr "Migrate Liquidity"
 #: src/components/swapv2/SwapModalFooter.tsx
 msgid "Minimum received"
 msgstr "Minimum received"
+
+#: src/components/LiquidityProviderMode/index.tsx
+msgid "Multiple Tokens"
+msgstr "Multiple Tokens"
 
 #: 
 #~ msgid "My Dashboard"
@@ -1131,6 +1149,10 @@ msgstr "Pool"
 msgid "Pool Address"
 msgstr "Pool Address"
 
+#: src/pages/AddLiquidity/ZapIn.tsx
+msgid "Pool Allocation"
+msgstr "Pool Allocation"
+
 #: src/pages/PoolFinder/PoolFinderExternal.tsx
 #: src/pages/PoolFinder/index.tsx
 msgid "Pool Found!"
@@ -1197,6 +1219,7 @@ msgid "Price"
 msgstr "Price"
 
 #: src/components/swap/AdvancedSwapDetails.tsx
+#: src/pages/AddLiquidity/ZapIn.tsx
 msgid "Price Impact"
 msgstr "Price Impact"
 
@@ -1224,7 +1247,8 @@ msgstr "Price:"
 #~ msgid "Prices"
 #~ msgstr "Prices"
 
-#: src/pages/AddLiquidity/index.tsx
+#: src/pages/AddLiquidity/TwoTokens.tsx
+#: src/pages/AddLiquidity/ZapIn.tsx
 #: src/pages/CreatePool/index.tsx
 msgid "Prices and Pool share"
 msgstr "Prices and Pool share"
@@ -1378,6 +1402,10 @@ msgstr "Show More Pools"
 msgid "Show Portis"
 msgstr "Show Portis"
 
+#: src/components/LiquidityProviderMode/index.tsx
+msgid "Single Token"
+msgstr "Single Token"
+
 #: src/pages/Static/About.tsx
 #: src/pages/Static/About.tsx
 #: src/pages/Static/About.tsx
@@ -1469,7 +1497,8 @@ msgstr "Terms of Use"
 msgid "The difference between the market price and your price due to trade size. Adjust the price impact tolerance in the top right configuration."
 msgstr "The difference between the market price and your price due to trade size. Adjust the price impact tolerance in the top right configuration."
 
-#: src/pages/AddLiquidity/index.tsx
+#: src/pages/AddLiquidity/TwoTokens.tsx
+#: src/pages/AddLiquidity/ZapIn.tsx
 #: src/pages/CreatePool/index.tsx
 msgid "The price is deviating quite a lot from that market price, please be careful!"
 msgstr "The price is deviating quite a lot from that market price, please be careful!"
@@ -1650,15 +1679,17 @@ msgstr "Upcoming Farms"
 msgid "Update list"
 msgstr "Update list"
 
-#: src/pages/AddLiquidity/index.tsx
-#: src/pages/AddLiquidity/index.tsx
+#: src/pages/AddLiquidity/TwoTokens.tsx
+#: src/pages/AddLiquidity/TwoTokens.tsx
+#: src/pages/AddLiquidity/ZapIn.tsx
 #: src/pages/CreatePool/index.tsx
 #: src/pages/CreatePool/index.tsx
 msgid "Use Native Token"
 msgstr "Use Native Token"
 
-#: src/pages/AddLiquidity/index.tsx
-#: src/pages/AddLiquidity/index.tsx
+#: src/pages/AddLiquidity/TwoTokens.tsx
+#: src/pages/AddLiquidity/TwoTokens.tsx
+#: src/pages/AddLiquidity/ZapIn.tsx
 #: src/pages/CreatePool/index.tsx
 #: src/pages/CreatePool/index.tsx
 msgid "Use Wrapped Token"
@@ -1717,6 +1748,10 @@ msgstr "Waiting For Confirmation"
 msgid "Wallet Address or ENS name"
 msgstr "Wallet Address or ENS name"
 
+#: src/components/LiquidityProviderMode/index.tsx
+msgid "We will automatically create liquidity pool tokens for you and add them to the liquidity pool, all in a single transaction."
+msgstr "We will automatically create liquidity pool tokens for you and add them to the liquidity pool, all in a single transaction."
+
 #: src/components/Vesting/index.tsx
 #: src/components/Vesting/index.tsx
 msgid "What can KNC be used for?"
@@ -1746,10 +1781,15 @@ msgstr "You are creating a pool"
 msgid "You don’t have liquidity in this {type} pool yet."
 msgstr "You don’t have liquidity in this {type} pool yet."
 
-#: src/pages/AddLiquidity/index.tsx
+#: src/pages/AddLiquidity/TwoTokens.tsx
+#: src/pages/AddLiquidity/ZapIn.tsx
 #: src/pages/RemoveLiquidity/migrate_uni.tsx
 msgid "You will receive"
 msgstr "You will receive"
+
+#: src/components/ConfirmAddModalBottom/index.tsx
+msgid "Your Share of Pool"
+msgstr "Your Share of Pool"
 
 #: src/components/PositionCard/PositionCardSUSHI.tsx
 #: src/components/PositionCard/PositionCardSUSHI.tsx

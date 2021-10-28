@@ -159,7 +159,8 @@ msgstr "URL이 <0>dmm.exchange인지 항상 확인하십시오.</0> - 안전을 
 #: src/components/PoolList/ListItem.tsx
 #: src/components/PoolList/index.tsx
 #: src/components/PositionCard/index.tsx
-#: src/pages/AddLiquidity/index.tsx
+#: src/pages/AddLiquidity/TwoTokens.tsx
+#: src/pages/AddLiquidity/ZapIn.tsx
 #: src/pages/CreatePool/index.tsx
 msgid "Amplification Factor. Higher AMP, higher capital efficiency within a price range. Higher AMP recommended for more stable pairs, lower AMP for more volatile pairs."
 msgstr "증폭 계수. 증폭된 풀은 높은 자본 효율성을 제공합니다. 높은 AMP는 높은 자본 효율성을 제공하기 위해서 정해진 가격 범위 안에서 유동성을 증폭시킵니다. 스테이블 토큰같이 안정적인 토큰 쌍에 더 높은 AMP를 사용할 수 있고 가격 변동이 심한 쌍에는 낮은 AMP가 권장됩니다."
@@ -336,7 +337,8 @@ msgid "Confirm this transaction in your wallet"
 msgstr "지갑에서 이 거래를 승인하세요"
 
 #: src/components/Web3Status/index.tsx
-#: src/pages/AddLiquidity/index.tsx
+#: src/pages/AddLiquidity/TwoTokens.tsx
+#: src/pages/AddLiquidity/ZapIn.tsx
 #: src/pages/CreatePool/index.tsx
 #: src/pages/RemoveLiquidity/index.tsx
 #: src/pages/RemoveLiquidity/migrate_sushi.tsx
@@ -359,6 +361,7 @@ msgstr "지갑에 연결하여 유동성을 확인하세요."
 #: src/state/burn/hooks.ts
 #: src/state/burn/hooks_sushi.ts
 #: src/state/burn/hooks_uni.ts
+#: src/state/mint/hooks.ts
 #: src/state/mint/hooks.ts
 #: src/state/mint/hooks_for_migration.ts
 #: src/state/stake/hooks.ts
@@ -401,7 +404,8 @@ msgstr "새 풀 만들기"
 msgid "Create a new pool or select another pair of tokens to view the available pools."
 msgstr "새 풀을 생성하거나 다른 토큰 쌍을 선택하시면 현재 예치가 가능한 풀을 확인 할 수 있습니다."
 
-#: src/pages/AddLiquidity/index.tsx
+#: src/pages/AddLiquidity/TwoTokens.tsx
+#: src/pages/AddLiquidity/ZapIn.tsx
 msgid "Current Price:"
 msgstr ""
 
@@ -498,7 +502,8 @@ msgstr ""
 msgid "Dynamic"
 msgstr "동적"
 
-#: src/pages/AddLiquidity/index.tsx
+#: src/pages/AddLiquidity/TwoTokens.tsx
+#: src/pages/AddLiquidity/ZapIn.tsx
 #: src/pages/CreatePool/index.tsx
 msgid "Dynamic Fee Range"
 msgstr ""
@@ -559,6 +564,7 @@ msgstr ""
 #: src/state/burn/hooks_sushi.ts
 #: src/state/burn/hooks_uni.ts
 #: src/state/mint/hooks.ts
+#: src/state/mint/hooks.ts
 #: src/state/mint/hooks_for_migration.ts
 #: src/state/stake/hooks.ts
 #: src/state/stake/hooks.ts
@@ -587,6 +593,10 @@ msgstr "연결하는 동안 오류가 발생했습니다."
 #: src/components/WalletModal/index.tsx
 msgid "Error connecting. Try refreshing the page."
 msgstr "연결하는 동안 오류가 발생했습니다. 페이지를 새로고침해 보세요."
+
+#: src/pages/AddLiquidity/ZapIn.tsx
+msgid "Est. received"
+msgstr ""
 
 #: src/pages/RemoveLiquidity/migrate_sushi.tsx
 #: src/pages/RemoveLiquidity/migrate_uni.tsx
@@ -626,7 +636,8 @@ msgstr "수수료(24시간)"
 msgid "Fee Range"
 msgstr "수수료 범위"
 
-#: src/pages/AddLiquidity/index.tsx
+#: src/pages/AddLiquidity/TwoTokens.tsx
+#: src/pages/AddLiquidity/ZapIn.tsx
 #: src/pages/CreatePool/index.tsx
 msgid "Fees are adjusted dynamically according to market conditions to maximise returns for liquidity providers."
 msgstr "수수료는 유동성 공급자의 수익을 극대화하기 위해 시장 상황에 따라 동적으로 조정됩니다."
@@ -789,6 +800,7 @@ msgstr "이 거래에 대한 유동성이 충분하지 않습니다."
 #: src/hooks/useWrapCallback.ts
 #: src/state/mint/hooks.ts
 #: src/state/mint/hooks.ts
+#: src/state/mint/hooks.ts
 #: src/state/mint/hooks_for_migration.ts
 #: src/state/mint/hooks_for_migration.ts
 #: src/state/swap/hooks.ts
@@ -800,6 +812,7 @@ msgstr ""
 msgid "Insured by"
 msgstr "보험 제공"
 
+#: src/state/mint/hooks.ts
 #: src/state/mint/hooks.ts
 #: src/state/swap/hooks.ts
 #: src/state/swap/useAggregator.ts
@@ -819,7 +832,8 @@ msgstr "잘못된 쌍입니다."
 msgid "Invalid recipient"
 msgstr "잘못된 수신자"
 
-#: src/pages/AddLiquidity/index.tsx
+#: src/pages/AddLiquidity/TwoTokens.tsx
+#: src/pages/AddLiquidity/ZapIn.tsx
 msgid "Inventory ratio:"
 msgstr "재고 비율:"
 
@@ -974,6 +988,10 @@ msgstr "유동성 마이그레이션"
 #: src/components/swapv2/SwapModalFooter.tsx
 msgid "Minimum received"
 msgstr "최소 수령"
+
+#: src/components/LiquidityProviderMode/index.tsx
+msgid "Multiple Tokens"
+msgstr ""
 
 #: 
 #~ msgid "My Dashboard"
@@ -1131,6 +1149,10 @@ msgstr "풀"
 msgid "Pool Address"
 msgstr "풀 주소"
 
+#: src/pages/AddLiquidity/ZapIn.tsx
+msgid "Pool Allocation"
+msgstr ""
+
 #: src/pages/PoolFinder/PoolFinderExternal.tsx
 #: src/pages/PoolFinder/index.tsx
 msgid "Pool Found!"
@@ -1197,6 +1219,7 @@ msgid "Price"
 msgstr "가격"
 
 #: src/components/swap/AdvancedSwapDetails.tsx
+#: src/pages/AddLiquidity/ZapIn.tsx
 msgid "Price Impact"
 msgstr "가격 영향"
 
@@ -1224,7 +1247,8 @@ msgstr "가격:"
 #~ msgid "Prices"
 #~ msgstr ""
 
-#: src/pages/AddLiquidity/index.tsx
+#: src/pages/AddLiquidity/TwoTokens.tsx
+#: src/pages/AddLiquidity/ZapIn.tsx
 #: src/pages/CreatePool/index.tsx
 msgid "Prices and Pool share"
 msgstr ""
@@ -1378,6 +1402,10 @@ msgstr "더 많은 풀 보기"
 msgid "Show Portis"
 msgstr "Show Portis"
 
+#: src/components/LiquidityProviderMode/index.tsx
+msgid "Single Token"
+msgstr ""
+
 #: src/pages/Static/About.tsx
 #: src/pages/Static/About.tsx
 #: src/pages/Static/About.tsx
@@ -1469,7 +1497,8 @@ msgstr ""
 msgid "The difference between the market price and your price due to trade size. Adjust the price impact tolerance in the top right configuration."
 msgstr "거래 규모로 인한 시장 가격과 귀하의 가격 간의 차이입니다. 오른쪽 상단 구성에서 슬립피지 가격 영향 허용 범위를 조정합니다."
 
-#: src/pages/AddLiquidity/index.tsx
+#: src/pages/AddLiquidity/TwoTokens.tsx
+#: src/pages/AddLiquidity/ZapIn.tsx
 #: src/pages/CreatePool/index.tsx
 msgid "The price is deviating quite a lot from that market price, please be careful!"
 msgstr ""
@@ -1650,15 +1679,17 @@ msgstr ""
 msgid "Update list"
 msgstr "목록 업데이트"
 
-#: src/pages/AddLiquidity/index.tsx
-#: src/pages/AddLiquidity/index.tsx
+#: src/pages/AddLiquidity/TwoTokens.tsx
+#: src/pages/AddLiquidity/TwoTokens.tsx
+#: src/pages/AddLiquidity/ZapIn.tsx
 #: src/pages/CreatePool/index.tsx
 #: src/pages/CreatePool/index.tsx
 msgid "Use Native Token"
 msgstr ""
 
-#: src/pages/AddLiquidity/index.tsx
-#: src/pages/AddLiquidity/index.tsx
+#: src/pages/AddLiquidity/TwoTokens.tsx
+#: src/pages/AddLiquidity/TwoTokens.tsx
+#: src/pages/AddLiquidity/ZapIn.tsx
 #: src/pages/CreatePool/index.tsx
 #: src/pages/CreatePool/index.tsx
 msgid "Use Wrapped Token"
@@ -1717,6 +1748,10 @@ msgstr "확인 대기 중"
 msgid "Wallet Address or ENS name"
 msgstr "지갑 주소 또는 ENS 이름"
 
+#: src/components/LiquidityProviderMode/index.tsx
+msgid "We will automatically create liquidity pool tokens for you and add them to the liquidity pool, all in a single transaction."
+msgstr ""
+
 #: src/components/Vesting/index.tsx
 #: src/components/Vesting/index.tsx
 msgid "What can KNC be used for?"
@@ -1746,10 +1781,15 @@ msgstr ""
 msgid "You don’t have liquidity in this {type} pool yet."
 msgstr "이 {type} 풀에는 아직 유동성이 없습니다."
 
-#: src/pages/AddLiquidity/index.tsx
+#: src/pages/AddLiquidity/TwoTokens.tsx
+#: src/pages/AddLiquidity/ZapIn.tsx
 #: src/pages/RemoveLiquidity/migrate_uni.tsx
 msgid "You will receive"
 msgstr "다음 금액 만큼 받을 것입니다"
+
+#: src/components/ConfirmAddModalBottom/index.tsx
+msgid "Your Share of Pool"
+msgstr ""
 
 #: src/components/PositionCard/PositionCardSUSHI.tsx
 #: src/components/PositionCard/PositionCardSUSHI.tsx

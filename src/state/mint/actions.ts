@@ -6,4 +6,5 @@ export enum Field {
 }
 
 export const typeInput = createAction<{ field: Field; typedValue: string; noLiquidity: boolean }>('mint/typeInputMint')
+export const switchField = createAction<{ field: Field }>('mint/switchField')
 export const resetMintState = createAction<void>('mint/resetMintState')

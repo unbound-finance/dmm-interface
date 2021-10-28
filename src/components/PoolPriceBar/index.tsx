@@ -100,19 +100,19 @@ export function PoolPriceBar({
       {noLiquidity && (
         <>
           <PoolPriceBarItem>
-            <Text fontWeight={500} fontSize={14} color={theme.subText} pt={1}>
+            <Text fontWeight={400} fontSize={14} color={theme.subText} pt={1}>
               {nativeB?.symbol} <Trans>per</Trans> {nativeA?.symbol}
             </Text>
-            <TYPE.black fontWeight={500} fontSize={14} color={theme.text}>
+            <TYPE.black fontWeight={400} fontSize={14} color={theme.text}>
               {price?.toSignificant(6) ?? '-'}
             </TYPE.black>
           </PoolPriceBarItem>
 
           <PoolPriceBarItem>
-            <Text fontWeight={500} fontSize={14} color={theme.subText} pt={1}>
+            <Text fontWeight={400} fontSize={14} color={theme.subText} pt={1}>
               {nativeA?.symbol} <Trans>per</Trans> {nativeB?.symbol}
             </Text>
-            <TYPE.black fontWeight={500} fontSize={14} color={theme.text}>
+            <TYPE.black fontWeight={400} fontSize={14} color={theme.text}>
               {price?.invert()?.toSignificant(6) ?? '-'}
             </TYPE.black>
           </PoolPriceBarItem>
@@ -120,10 +120,10 @@ export function PoolPriceBar({
       )}
 
       <PoolPriceBarItem isAdd={!noLiquidity}>
-        <Text fontWeight={500} fontSize={14} color={theme.subText} pt={1}>
+        <Text fontWeight={400} fontSize={14} color={theme.subText} pt={1}>
           <Trans>Share of Pool</Trans>
         </Text>
-        <TYPE.black fontWeight={500} color={theme.text} fontSize={14}>
+        <TYPE.black fontWeight={400} color={theme.text} fontSize={14}>
           {noLiquidity && price
             ? '100'
             : (poolTokenPercentage?.lessThan(ONE_BIPS) ? '<0.01' : poolTokenPercentage?.toFixed(2)) ?? '0'}

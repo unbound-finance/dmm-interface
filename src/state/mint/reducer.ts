@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit'
-import { Field, resetMintState, typeInput } from './actions'
+import { Field, resetMintState, switchField, typeInput } from './actions'
 
 export interface MintState {
   readonly independentField: Field
@@ -42,6 +42,12 @@ export default createReducer<MintState>(initialState, builder =>
           typedValue,
           otherTypedValue: ''
         }
+      }
+    })
+    .addCase(switchField, (state, { payload: { field } }) => {
+      return {
+        ...state,
+        independentField: field
       }
     })
 )

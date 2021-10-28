@@ -8,8 +8,8 @@ import { useCurrencyConvertedToNative } from 'utils/dmm'
 
 interface CurrentPriceProps {
   price?: Price
-  showInverted: boolean
-  setShowInverted: (showInverted: boolean) => void
+  showInverted?: boolean
+  setShowInverted?: (showInverted: boolean) => void
 }
 
 export default function CurrentPrice({ price, showInverted, setShowInverted }: CurrentPriceProps) {
@@ -25,11 +25,11 @@ export default function CurrentPrice({ price, showInverted, setShowInverted }: C
     : `1 ${nativeQuote?.symbol} = ${formattedPrice ?? '-'} ${nativeBase?.symbol}`
 
   return (
-    <Text fontWeight={500} fontSize={14} style={{ alignItems: 'center', display: 'flex' }}>
+    <Text fontWeight={400} fontSize={14} style={{ alignItems: 'center', display: 'flex' }}>
       {show ? (
         <>
           <div style={{ marginRight: '8px' }}>{label}</div>
-          <div onClick={() => setShowInverted(!showInverted)}>
+          <div onClick={() => setShowInverted && setShowInverted(!showInverted)}>
             <Repeat size={14} color={theme.text1} />
           </div>
         </>

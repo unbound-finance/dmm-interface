@@ -3,6 +3,18 @@ import { AbstractConnector } from '@web3-react/abstract-connector'
 import { injected, ledger, walletconnect, walletlink } from '../connectors'
 import { PopularPair } from 'state/pair/types'
 
+export const ZAP_ADDRESSES: { [chainId in ChainId]?: string } = {
+  [ChainId.MAINNET]: '',
+  [ChainId.ROPSTEN]: '0xc5fd9F7001209482f006f8A6280E3af96Bfd768b',
+  [ChainId.MATIC]: '',
+  [ChainId.MUMBAI]: '',
+  [ChainId.BSCTESTNET]: '',
+  [ChainId.BSCMAINNET]: '',
+  [ChainId.AVAXTESTNET]: '',
+  [ChainId.AVAXMAINNET]: '',
+  [ChainId.FANTOM]: ''
+}
+
 export const ROUTER_ADDRESSES: { [chainId in ChainId]: string } = {
   [ChainId.MAINNET]:
     process.env.REACT_APP_MAINNET_ENV === 'staging'
