@@ -51,7 +51,8 @@ import { currencyId } from 'utils/currencyId'
 import isZero from 'utils/isZero'
 import { useCurrencyConvertedToNative, feeRangeCalc } from 'utils/dmm'
 import { Dots, Wrapper } from '../Pool/styleds'
-import { ActiveText, Section, USDPrice, Warning, TokenWrapper } from './styled'
+import { ActiveText, Section, USDPrice, Warning, TokenWrapper, TokenColumn, AMPColumn } from './styled'
+import { GridColumn } from 'pages/CreatePool/styled'
 
 const ZapIn = ({
   currencyIdA,
@@ -369,228 +370,240 @@ const ZapIn = ({
       />
 
       <AutoColumn gap="20px">
-        <div>
-          <CurrencyInputPanel
-            value={formattedAmounts[independentField]}
-            onUserInput={onFieldInput}
-            onMax={() => {
-              onFieldInput(maxAmounts[independentField]?.toExact() ?? '')
-            }}
-            onSwitchCurrency={handleSwitchCurrency}
-            showMaxButton={!atMaxAmounts[independentField]}
-            currency={currencies[independentField]}
-            id="zap-input"
-            disableCurrencySelect={false}
-            showCommonBases
-            positionMax="top"
-            isSwitchMode
-            estimatedUsd={formattedNum(estimatedUsd.toString(), true) || undefined}
-          />
-          <Flex justifyContent="space-between" alignItems="center" marginTop="0.5rem">
-            <USDPrice>
-              {usdPrices[0] ? (
-                `1 ${currencies[independentField]?.symbol} = ${formattedNum(usdPrices[0].toString(), true)}`
-              ) : (
-                <Loader />
-              )}
-            </USDPrice>
+        <GridColumn>
+          <TokenColumn gap="20px">
+            <div>
+              <CurrencyInputPanel
+                value={formattedAmounts[independentField]}
+                onUserInput={onFieldInput}
+                onMax={() => {
+                  onFieldInput(maxAmounts[independentField]?.toExact() ?? '')
+                }}
+                onSwitchCurrency={handleSwitchCurrency}
+                showMaxButton={!atMaxAmounts[independentField]}
+                currency={currencies[independentField]}
+                id="zap-input"
+                disableCurrencySelect={false}
+                showCommonBases
+                positionMax="top"
+                isSwitchMode
+                estimatedUsd={formattedNum(estimatedUsd.toString(), true) || undefined}
+              />
+              <Flex justifyContent="space-between" alignItems="center" marginTop="0.5rem">
+                <USDPrice>
+                  {usdPrices[0] ? (
+                    `1 ${currencies[independentField]?.symbol} = ${formattedNum(usdPrices[0].toString(), true)}`
+                  ) : (
+                    <Loader />
+                  )}
+                </USDPrice>
 
-            {pairAddress &&
-              chainId &&
-              (selectedCurrencyIsETHER || selectedCurrencyIsWETH) &&
-              currencies[dependentField] && (
-                <StyledInternalLink
-                  replace
-                  to={`/add/${
-                    selectedCurrencyIsETHER ? currencyId(WETH[chainId], chainId) : currencyId(ETHER, chainId)
-                  }/${currencyId(currencies[dependentField] as Currency, chainId)}/${pairAddress}`}
-                >
-                  {selectedCurrencyIsETHER ? <Trans>Use Wrapped Token</Trans> : <Trans>Use Native Token</Trans>}
-                </StyledInternalLink>
-              )}
-          </Flex>
-        </div>
+                {pairAddress &&
+                  chainId &&
+                  (selectedCurrencyIsETHER || selectedCurrencyIsWETH) &&
+                  currencies[dependentField] && (
+                    <StyledInternalLink
+                      replace
+                      to={`/add/${
+                        selectedCurrencyIsETHER ? currencyId(WETH[chainId], chainId) : currencyId(ETHER, chainId)
+                      }/${currencyId(currencies[dependentField] as Currency, chainId)}/${pairAddress}`}
+                    >
+                      {selectedCurrencyIsETHER ? <Trans>Use Wrapped Token</Trans> : <Trans>Use Native Token</Trans>}
+                    </StyledInternalLink>
+                  )}
+              </Flex>
+            </div>
 
-        <Section padding="0px" borderRadius={'20px'}>
-          <Row padding="0 0 1rem 0">
-            <TYPE.subHeader fontWeight={500} fontSize={14} color={theme.subText}>
-              <Trans>Pool Allocation</Trans>
-            </TYPE.subHeader>
-          </Row>
-
-          <AutoRow justify="space-between" gap="4px" style={{ paddingBottom: '12px' }}>
-            <TokenWrapper>
-              <CurrencyLogo currency={currencies[independentField] || undefined} size={'16px'} />
-              <TYPE.subHeader fontWeight={400} fontSize={14} color={theme.subText}>
-                {currencies[independentField]?.symbol}:
-              </TYPE.subHeader>
-            </TokenWrapper>
-            <TYPE.black fontWeight={400} fontSize={14}>
-              {parsedAmounts[independentField]?.toSignificant(6)} (~
-              {formattedNum((tokenAPoolAllocUsd || 0).toString(), true)})
-            </TYPE.black>
-          </AutoRow>
-
-          <AutoRow justify="space-between" gap="4px" style={{ paddingBottom: '12px' }}>
-            <TokenWrapper>
-              <CurrencyLogo currency={currencies[dependentField] || undefined} size={'16px'} />
-              <TYPE.subHeader fontWeight={400} fontSize={14} color={theme.subText}>
-                {currencies[dependentField]?.symbol}:
-              </TYPE.subHeader>
-            </TokenWrapper>
-            <TYPE.black fontWeight={400} fontSize={14}>
-              {parsedAmounts[dependentField]?.toSignificant(6)} (~
-              {formattedNum((tokenBPoolAllocUsd || 0).toString(), true)})
-            </TYPE.black>
-          </AutoRow>
-
-          <AutoRow justify="space-between" gap="4px" style={{ paddingBottom: '12px' }}>
-            <TYPE.subHeader fontWeight={400} fontSize={14} color={theme.subText}>
-              <Trans>Price Impact</Trans>:
-            </TYPE.subHeader>
-            <TYPE.black fontWeight={400} fontSize={14}>
-              <FormattedPriceImpact priceImpact={priceImpact} />
-            </TYPE.black>
-          </AutoRow>
-
-          <AutoRow justify="space-between" gap="4px" style={{ paddingBottom: '12px' }}>
-            <TYPE.subHeader fontWeight={400} fontSize={14} color={theme.subText}>
-              <Trans>Est. received</Trans>:
-            </TYPE.subHeader>
-            <TYPE.black fontWeight={400} fontSize={14}>
-              {liquidityMinted?.toSignificant(6)} LP (~
-              {tokenAPoolAllocUsd &&
-                tokenBPoolAllocUsd &&
-                formattedNum((tokenAPoolAllocUsd + tokenBPoolAllocUsd).toString(), true)}
-              )
-            </TYPE.black>
-          </AutoRow>
-        </Section>
-
-        {currencies[independentField] && currencies[dependentField] && pairState !== PairState.INVALID && (
-          <Section padding="0px" borderRadius={'20px'}>
-            <Row padding="0 0 1rem 0">
-              <TYPE.subHeader fontWeight={500} fontSize={14} color={theme.subText}>
-                <Trans>Prices and Pool share</Trans>
-              </TYPE.subHeader>
-            </Row>
-
-            {!noLiquidity && (
-              <AutoRow justify="space-between" gap="4px" style={{ paddingBottom: '12px' }}>
-                <TYPE.subHeader fontWeight={400} fontSize={14} color={theme.subText}>
-                  <Trans>Current Price:</Trans>
+            <Section padding="0px" borderRadius={'20px'}>
+              <Row padding="0 0 1rem 0">
+                <TYPE.subHeader fontWeight={500} fontSize={14} color={theme.subText}>
+                  <Trans>Pool Allocation</Trans>
                 </TYPE.subHeader>
+              </Row>
+
+              <AutoRow justify="space-between" gap="4px" style={{ paddingBottom: '12px' }}>
+                <TokenWrapper>
+                  <CurrencyLogo currency={currencies[independentField] || undefined} size={'16px'} />
+                  <TYPE.subHeader fontWeight={400} fontSize={14} color={theme.subText}>
+                    {currencies[independentField]?.symbol}:
+                  </TYPE.subHeader>
+                </TokenWrapper>
                 <TYPE.black fontWeight={400} fontSize={14}>
-                  <CurrentPrice price={price} showInverted={showInverted} setShowInverted={setShowInverted} />
+                  {parsedAmounts[independentField]?.toSignificant(6)} (~
+                  {formattedNum((tokenAPoolAllocUsd || 0).toString(), true)})
                 </TYPE.black>
               </AutoRow>
+
+              <AutoRow justify="space-between" gap="4px" style={{ paddingBottom: '12px' }}>
+                <TokenWrapper>
+                  <CurrencyLogo currency={currencies[dependentField] || undefined} size={'16px'} />
+                  <TYPE.subHeader fontWeight={400} fontSize={14} color={theme.subText}>
+                    {currencies[dependentField]?.symbol}:
+                  </TYPE.subHeader>
+                </TokenWrapper>
+                <TYPE.black fontWeight={400} fontSize={14}>
+                  {parsedAmounts[dependentField]?.toSignificant(6)} (~
+                  {formattedNum((tokenBPoolAllocUsd || 0).toString(), true)})
+                </TYPE.black>
+              </AutoRow>
+
+              <AutoRow justify="space-between" gap="4px" style={{ paddingBottom: '12px' }}>
+                <TYPE.subHeader fontWeight={400} fontSize={14} color={theme.subText}>
+                  <Trans>Price Impact</Trans>:
+                </TYPE.subHeader>
+                <TYPE.black fontWeight={400} fontSize={14}>
+                  <FormattedPriceImpact priceImpact={priceImpact} />
+                </TYPE.black>
+              </AutoRow>
+
+              <AutoRow justify="space-between" gap="4px" style={{ paddingBottom: '12px' }}>
+                <TYPE.subHeader fontWeight={400} fontSize={14} color={theme.subText}>
+                  <Trans>Est. received</Trans>:
+                </TYPE.subHeader>
+                <TYPE.black fontWeight={400} fontSize={14}>
+                  {liquidityMinted?.toSignificant(6)} LP (~
+                  {tokenAPoolAllocUsd &&
+                    tokenBPoolAllocUsd &&
+                    formattedNum((tokenAPoolAllocUsd + tokenBPoolAllocUsd).toString(), true)}
+                  )
+                </TYPE.black>
+              </AutoRow>
+            </Section>
+
+            {currencies[independentField] && currencies[dependentField] && pairState !== PairState.INVALID && (
+              <Section padding="0px" borderRadius={'20px'}>
+                <Row padding="0 0 1rem 0">
+                  <TYPE.subHeader fontWeight={500} fontSize={14} color={theme.subText}>
+                    <Trans>Prices and Pool share</Trans>
+                  </TYPE.subHeader>
+                </Row>
+
+                {!noLiquidity && (
+                  <AutoRow justify="space-between" gap="4px" style={{ paddingBottom: '12px' }}>
+                    <TYPE.subHeader fontWeight={400} fontSize={14} color={theme.subText}>
+                      <Trans>Current Price:</Trans>
+                    </TYPE.subHeader>
+                    <TYPE.black fontWeight={400} fontSize={14}>
+                      <CurrentPrice price={price} showInverted={showInverted} setShowInverted={setShowInverted} />
+                    </TYPE.black>
+                  </AutoRow>
+                )}
+
+                <AutoRow justify="space-between" gap="4px" style={{ paddingBottom: '12px' }}>
+                  <TYPE.subHeader fontWeight={400} fontSize={14} color={theme.subText}>
+                    <Trans>Inventory ratio:</Trans>
+                  </TYPE.subHeader>
+                  <TYPE.black fontWeight={400} fontSize={14}>
+                    {percentToken0}% {pair?.token0.symbol} - {percentToken1}% {pair?.token1.symbol}
+                  </TYPE.black>
+                </AutoRow>
+
+                <PoolPriceBar
+                  currencies={currencies}
+                  poolTokenPercentage={poolTokenPercentage}
+                  noLiquidity={noLiquidity}
+                  price={price}
+                  pair={pair}
+                />
+              </Section>
             )}
+          </TokenColumn>
 
-            <AutoRow justify="space-between" gap="4px" style={{ paddingBottom: '12px' }}>
-              <TYPE.subHeader fontWeight={400} fontSize={14} color={theme.subText}>
-                <Trans>Inventory ratio:</Trans>
-              </TYPE.subHeader>
-              <TYPE.black fontWeight={400} fontSize={14}>
-                {percentToken0}% {pair?.token0.symbol} - {percentToken1}% {pair?.token1.symbol}
-              </TYPE.black>
-            </AutoRow>
-
-            <PoolPriceBar
-              currencies={currencies}
-              poolTokenPercentage={poolTokenPercentage}
-              noLiquidity={noLiquidity}
-              price={price}
-              pair={pair}
-            />
-          </Section>
-        )}
-
-        <AutoRow>
-          <ActiveText>
-            AMP
-            {!!pair ? <>&nbsp;=&nbsp;{new Fraction(pair.amp).divide(JSBI.BigInt(10000)).toSignificant(5)}</> : ''}
-          </ActiveText>
-          <QuestionHelper
-            text={t({
-              id:
-                'Amplification Factor. Higher AMP, higher capital efficiency within a price range. Higher AMP recommended for more stable pairs, lower AMP for more volatile pairs.',
-              message:
-                'Amplification Factor. Higher AMP, higher capital efficiency within a price range. Higher AMP recommended for more stable pairs, lower AMP for more volatile pairs.'
-            })}
-          />
-        </AutoRow>
-
-        {currencies[independentField] &&
-          currencies[dependentField] &&
-          pairState !== PairState.INVALID &&
-          (!!pairAddress || +amp >= 1) && (
-            <PoolPriceRangeBarToggle
-              pair={pair}
-              currencies={currencies}
-              price={price}
-              amplification={ampConvertedInBps}
-            />
-          )}
-
-        {(!!pairAddress || +amp >= 1) && (
-          <Section>
+          <AMPColumn gap="20px" style={{ height: 'fit-content' }}>
             <AutoRow>
-              <Text fontWeight={500} fontSize={14} color={theme.text2}>
-                <Trans>Dynamic Fee Range</Trans>:{' '}
-                {feeRangeCalc(!!pair?.amp ? +new Fraction(pair.amp).divide(JSBI.BigInt(10000)).toSignificant(5) : +amp)}
-              </Text>
+              <ActiveText>
+                AMP
+                {!!pair ? <>&nbsp;=&nbsp;{new Fraction(pair.amp).divide(JSBI.BigInt(10000)).toSignificant(5)}</> : ''}
+              </ActiveText>
               <QuestionHelper
-                text={t`Fees are adjusted dynamically according to market conditions to maximise returns for liquidity providers.`}
+                text={t({
+                  id:
+                    'Amplification Factor. Higher AMP, higher capital efficiency within a price range. Higher AMP recommended for more stable pairs, lower AMP for more volatile pairs.',
+                  message:
+                    'Amplification Factor. Higher AMP, higher capital efficiency within a price range. Higher AMP recommended for more stable pairs, lower AMP for more volatile pairs.'
+                })}
               />
             </AutoRow>
-          </Section>
-        )}
 
-        {showSanityPriceWarning && (
-          <Warning>
-            <AlertTriangle color={theme.yellow2} />
-            <Text fontSize="0.75rem" marginLeft="0.75rem">
-              <Trans>The price is deviating quite a lot from that market price, please be careful!</Trans>
-            </Text>
-          </Warning>
-        )}
+            {currencies[independentField] &&
+              currencies[dependentField] &&
+              pairState !== PairState.INVALID &&
+              (!!pairAddress || +amp >= 1) && (
+                <PoolPriceRangeBarToggle
+                  pair={pair}
+                  currencies={currencies}
+                  price={price}
+                  amplification={ampConvertedInBps}
+                />
+              )}
 
-        {!account ? (
-          <ButtonLight onClick={toggleWalletModal}>
-            <Trans>Connect Wallet</Trans>
-          </ButtonLight>
-        ) : (
-          <AutoColumn gap={'md'}>
-            {(approval === ApprovalState.NOT_APPROVED || approval === ApprovalState.PENDING) && isValid && (
-              <RowBetween>
-                <ButtonPrimary onClick={approveCallback} disabled={approval === ApprovalState.PENDING} width={'100%'}>
-                  {approval === ApprovalState.PENDING ? (
-                    <Dots>Approving {currencies[independentField]?.symbol}</Dots>
-                  ) : (
-                    'Approve ' + currencies[independentField]?.symbol
-                  )}
-                </ButtonPrimary>
-              </RowBetween>
+            {(!!pairAddress || +amp >= 1) && (
+              <Section>
+                <AutoRow>
+                  <Text fontWeight={500} fontSize={14} color={theme.text2}>
+                    <Trans>Dynamic Fee Range</Trans>:{' '}
+                    {feeRangeCalc(
+                      !!pair?.amp ? +new Fraction(pair.amp).divide(JSBI.BigInt(10000)).toSignificant(5) : +amp
+                    )}
+                  </Text>
+                  <QuestionHelper
+                    text={t`Fees are adjusted dynamically according to market conditions to maximise returns for liquidity providers.`}
+                  />
+                </AutoRow>
+              </Section>
             )}
 
-            <ButtonError
-              onClick={() => {
-                expertMode ? handleZapIn() : setShowConfirm(true)
-              }}
-              disabled={!isValid || approval !== ApprovalState.APPROVED}
-              error={
-                !isValid &&
-                !!parsedAmounts[independentField] &&
-                !!parsedAmounts[dependentField] &&
-                !!(pairAddress && +amp < 1)
-              }
-            >
-              <Text fontSize={20} fontWeight={500}>
-                {error ?? (!pairAddress && +amp < 1 ? 'Enter amp (>=1)' : 'Supply')}
-              </Text>
-            </ButtonError>
-          </AutoColumn>
-        )}
+            {showSanityPriceWarning && (
+              <Warning>
+                <AlertTriangle color={theme.yellow2} />
+                <Text fontSize="0.75rem" marginLeft="0.75rem">
+                  <Trans>The price is deviating quite a lot from that market price, please be careful!</Trans>
+                </Text>
+              </Warning>
+            )}
+
+            {!account ? (
+              <ButtonLight onClick={toggleWalletModal}>
+                <Trans>Connect Wallet</Trans>
+              </ButtonLight>
+            ) : (
+              <AutoColumn gap={'md'}>
+                {(approval === ApprovalState.NOT_APPROVED || approval === ApprovalState.PENDING) && isValid && (
+                  <RowBetween>
+                    <ButtonPrimary
+                      onClick={approveCallback}
+                      disabled={approval === ApprovalState.PENDING}
+                      width={'100%'}
+                    >
+                      {approval === ApprovalState.PENDING ? (
+                        <Dots>Approving {currencies[independentField]?.symbol}</Dots>
+                      ) : (
+                        'Approve ' + currencies[independentField]?.symbol
+                      )}
+                    </ButtonPrimary>
+                  </RowBetween>
+                )}
+
+                <ButtonError
+                  onClick={() => {
+                    expertMode ? handleZapIn() : setShowConfirm(true)
+                  }}
+                  disabled={!isValid || approval !== ApprovalState.APPROVED}
+                  error={
+                    !isValid &&
+                    !!parsedAmounts[independentField] &&
+                    !!parsedAmounts[dependentField] &&
+                    !!(pairAddress && +amp < 1)
+                  }
+                >
+                  <Text fontSize={20} fontWeight={500}>
+                    {error ?? (!pairAddress && +amp < 1 ? 'Enter amp (>=1)' : 'Supply')}
+                  </Text>
+                </ButtonError>
+              </AutoColumn>
+            )}
+          </AMPColumn>
+        </GridColumn>
       </AutoColumn>
     </Wrapper>
   )
